@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monarch Motion — Built by athletes. Worn by those who move with intention.</title>
+  <meta name="description" content="Luxury athletic streetwear rooted in the discipline of real competition. Founding collection 2026.">
+  <meta property="og:title" content="Monarch Motion">
+  <meta property="og:description" content="Luxury athletic streetwear rooted in the discipline of real competition. Not for the gym. For everything after.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --surface: #161616;
+      --gold: #c9a84c;
+      --gold-dim: #7a6228;
+      --ivory: #f0ece4;
+      --stone: #7a756e;
+      --border: rgba(201, 168, 76, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--ivory);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Custom cursor (desktop only) */
+    @media (hover: hover) and (pointer: fine) {
+      body, a, button, input { cursor: none; }
+      .cursor {
+        position: fixed;
+        top: 0; left: 0;
+        width: 18px; height: 18px;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.35s cubic-bezier(0.2,0.7,0.2,1),
+                    height 0.35s cubic-bezier(0.2,0.7,0.2,1),
+                    background 0.35s ease,
+                    border-color 0.35s ease;
+        mix-blend-mode: difference;
+      }
+      .cursor.hover {
+        width: 52px; height: 52px;
+        background: rgba(201, 168, 76, 0.12);
+        mix-blend-mode: normal;
+      }
+    }
+    @media (hover: none), (pointer: coarse) {
+      .cursor { display: none; }
+    }
+
+    /* Typography */
+    h1, h2, h3, .display {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ivory);
+      letter-spacing: -0.01em;
+    }
+
+    .eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--gold);
+      display: inline-block;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.75rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.5s ease,
+                  padding 0.5s ease,
+                  border-color 0.5s ease,
+                  backdrop-filter 0.5s ease;
+    }
+    nav.scrolled {
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 1.1rem 2.5rem;
+      border-bottom-color: var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--ivory);
+    }
+    .crown {
+      color: var(--gold);
+      font-size: 1.35rem;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+    .wordmark {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ivory);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      padding: 0.7rem 1.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      transition: background 0.35s ease, color 0.35s ease !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--black) !important;
+    }
+
+    @media (max-width: 760px) {
+      nav { padding: 1.1rem 1.25rem; }
+      nav.scrolled { padding: 0.85rem 1.25rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-cta { padding: 0.55rem 1rem; font-size: 0.7rem; }
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 7rem 2.5rem 5rem;
+      background:
+        radial-gradient(ellipse at 22% 20%, rgba(201,168,76,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 78% 80%, rgba(201,168,76,0.035) 0%, transparent 55%),
+        linear-gradient(180deg, #0a0a0a 0%, #141414 45%, #0a0a0a 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.75) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.789 0 0 0 0 0.659 0 0 0 0 0.298 0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      opacity: 0.55;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
+    .hero h1 {
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      margin: 1.75rem 0;
+      max-width: 18ch;
+      font-weight: 300;
+    }
+    .hero-subhead {
+      max-width: 46ch;
+      color: var(--stone);
+      font-size: 1.05rem;
+      margin-bottom: 2.75rem;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 1.15rem 2.1rem;
+      text-decoration: none;
+      background: var(--gold);
+      color: var(--black);
+      border: 1px solid var(--gold);
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+    .btn-secondary {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ivory);
+      text-decoration: none;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--gold-dim);
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .btn-secondary:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .vertical-label {
+      position: absolute;
+      right: 1.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      font-size: 0.72rem;
+      color: var(--gold-dim);
+      z-index: 3;
+    }
+    @media (max-width: 900px) {
+      .vertical-label { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hero { padding: 6rem 1.25rem 4rem; }
+      .hero-ctas { gap: 1.25rem; }
+    }
+
+    /* Section base */
+    section {
+      padding: 7rem 2.5rem;
+      position: relative;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (max-width: 760px) {
+      section { padding: 5rem 1.25rem; }
+    }
+
+    .section-header {
+      margin-bottom: 4.5rem;
+      text-align: center;
+    }
+    .section-header .eyebrow {
+      margin-bottom: 1.25rem;
+    }
+    .section-header h2 {
+      font-size: clamp(2.1rem, 4.2vw, 3.1rem);
+    }
+
+    /* Pillars */
+    .pillars {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 3rem 2.5rem;
+    }
+    .pillar {
+      display: flex;
+      flex-direction: column;
+    }
+    .pillar-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .pillar-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pillar-desc {
+      color: var(--stone);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Manifesto */
+    .manifesto {
+      background: var(--surface);
+    }
+    .pullquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--ivory);
+      max-width: 26ch;
+      margin: 0 auto 3.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .pullquote::before,
+    .pullquote::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin: 2rem auto;
+    }
+    .manifesto-body {
+      max-width: 58ch;
+      margin: 0 auto;
+      color: var(--stone);
+    }
+    .manifesto-body p {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .manifesto-body p:last-child { margin-bottom: 0; }
+
+    /* Contrast (What we are / are not) */
+    .contrast {
+      background: var(--black);
+    }
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .contrast-col {
+      padding: 0 3rem;
+    }
+    .contrast-col:first-child {
+      border-right: 1px solid var(--border);
+    }
+    .contrast-col .eyebrow {
+      margin-bottom: 2rem;
+    }
+    .contrast-col ul { list-style: none; }
+    .contrast-col li {
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--ivory);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .contrast-col li:last-child { border-bottom: none; }
+    .contrast-col.not li { color: var(--stone); }
+    @media (max-width: 760px) {
+      .contrast-grid { grid-template-columns: 1fr; }
+      .contrast-col { padding: 0; }
+      .contrast-col:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 2.5rem;
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    /* Collection */
+    .collection {
+      background: var(--surface);
+    }
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .piece {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+      transition: background 0.45s ease;
+    }
+    .piece:hover {
+      background: var(--black);
+    }
+    .piece-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: auto;
+      font-weight: 300;
+    }
+    .piece-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-top: 1.5rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .piece-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.78rem;
+      color: var(--gold-dim);
+    }
+    .collection-footer {
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    /* Waitlist */
+    .waitlist {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+    .waitlist-inner {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .waitlist .eyebrow { margin-bottom: 1.25rem; }
+    .waitlist h2 {
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      margin-bottom: 1.25rem;
+    }
+    .waitlist-sub {
+      color: var(--stone);
+      margin-bottom: 2.75rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .waitlist-form {
+      display: flex;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s ease;
+    }
+    .waitlist-form:focus-within {
+      border-color: var(--gold);
+    }
+    .waitlist-form input {
+      flex: 1;
+      padding: 1.15rem 1.25rem;
+      background: transparent;
+      border: none;
+      color: var(--ivory);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .waitlist-form input::placeholder {
+      color: var(--stone);
+    }
+    .waitlist-form button {
+      padding: 0 2.25rem;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .waitlist-form button:hover {
+      background: var(--ivory);
+    }
+    .waitlist-note {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.7rem;
+      color: var(--stone);
+      margin-top: 1.5rem;
+    }
+    .waitlist-confirm {
+      display: none;
+      padding: 2rem 1rem;
+    }
+    .waitlist-confirm h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .waitlist-confirm p {
+      color: var(--stone);
+      font-size: 1rem;
+    }
+    .waitlist.submitted .waitlist-form,
+    .waitlist.submitted .waitlist-note { display: none; }
+    .waitlist.submitted .waitlist-confirm { display: block; }
+
+    @media (max-width: 560px) {
+      .waitlist-form { flex-direction: column; }
+      .waitlist-form button { padding: 1rem; }
+    }
+
+    /* Footer */
+    footer {
+      background: var(--black);
+      padding: 4.5rem 2.5rem 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2.25rem;
+    }
+    .footer-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.75rem;
+      color: var(--stone);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .copyright {
+      width: 100%;
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.7rem;
+      color: var(--stone);
+    }
+    @media (max-width: 560px) {
+      footer { padding: 3.5rem 1.25rem 2rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
+                  transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+                  transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal-stagger.in > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
+    .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.20s; }
+    .reveal-stagger.in > *:nth-child(3) { transition-delay: 0.35s; }
+    .reveal-stagger.in > *:nth-child(4) { transition-delay: 0.50s; }
+    .reveal-stagger.in > *:nth-child(5) { transition-delay: 0.65s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <a href="#top" class="brand" aria-label="Monarch Motion home">
+      <span class="crown" aria-hidden="true">&#9819;</span>
+      <span class="wordmark">Monarch Motion</span>
+    </a>
+    <div class="nav-links">
+      <a href="#manifesto">Story</a>
+      <a href="#collection">Collection</a>
+      <a href="#waitlist">Founding List</a>
+      <a href="#waitlist" class="nav-cta">Join the List</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-content reveal-stagger" id="hero-stagger">
+      <div class="eyebrow">Monarch Motion &nbsp;&middot;&nbsp; Founding Collection</div>
+      <h1>Built by athletes.<br>Worn by those who move with intention.</h1>
+      <p class="hero-subhead">Luxury athletic streetwear rooted in the discipline of real competition. Not for the gym. For everything after.</p>
+      <div class="hero-ctas">
+        <a href="#waitlist" class="btn-primary">Join the Founding List</a>
+        <a href="#manifesto" class="btn-secondary">Our Story</a>
+      </div>
+    </div>
+    <div class="vertical-label">Founding Collection &mdash; 2026</div>
+  </header>
+
+  <section class="pillars" id="pillars">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">The Five Pillars</span>
+        <h2>What holds us to the standard.</h2>
+      </div>
+      <div class="pillars-grid reveal-stagger">
+        <div class="pillar">
+          <div class="pillar-number">01</div>
+          <div class="pillar-name">Discipline</div>
+          <p class="pillar-desc">Every piece is built with the mindset of someone who showed up before anyone else was watching. Discipline is the design brief.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-number">02</div>
+          <div class="pillar-name">Elevation</div>
+          <p class="pillar-desc">Luxury is not about price. It is about standard. We hold ours to the same bar as the athletes who wear us hold theirs.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-number">03</div>
+          <div class="pillar-name">Authenticity</div>
+          <p class="pillar-desc">We are not a fashion brand that borrows from sport. We are a brand born inside competition, built to live outside of it.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-number">04</div>
+          <div class="pillar-name">Restraint</div>
+          <p class="pillar-desc">Nothing on a Monarch Motion piece is there by accident. No excess. No noise. Only what earns its place.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-number">05</div>
+          <div class="pillar-name">Precision</div>
+          <p class="pillar-desc">From construction to copy to distribution &mdash; every decision is made with intention. Nothing is accidental.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto" id="manifesto">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">The Monarch Standard</span>
+      </div>
+      <blockquote class="pullquote reveal">You don&rsquo;t have to play the sport to understand the discipline. But you recognize it when you see it.</blockquote>
+      <div class="manifesto-body reveal">
+        <p>Monarch Motion exists at the intersection of elite performance culture and luxury design. A wrestler knows what it cost to get here. A lacrosse player knows what it means to train when no one is watching. A fighter knows the difference between looking prepared and being prepared.</p>
+        <p>This brand is for people who know the difference &mdash; whether they compete or not. Wear it to dinner. Wear it on the flight. Wear it anywhere. Monarch Motion is not what you do. It is who you are when no one is asking.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contrast">
+    <div class="container">
+      <div class="contrast-grid">
+        <div class="contrast-col reveal">
+          <span class="eyebrow">What We Are</span>
+          <ul>
+            <li>Luxury streetwear rooted in the DNA of real athletic identity</li>
+            <li>Crafted with the precision of a championship program</li>
+            <li>Designed for the dinner, the flight, the street &mdash; not the gym</li>
+            <li>Athletic identity without the uniform</li>
+            <li>Limited, considered, built to last</li>
+          </ul>
+        </div>
+        <div class="contrast-col not reveal">
+          <span class="eyebrow">What We Are Not</span>
+          <ul>
+            <li>Not activewear or performance gear</li>
+            <li>Not fast fashion with athletic graphics</li>
+            <li>Not hype-driven logomania</li>
+            <li>Not borrowed credibility from sport culture</li>
+            <li>Not made for everyone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collection" id="collection">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">The Founding Collection</span>
+        <h2>Eight pieces. No filler.</h2>
+      </div>
+      <div class="collection-grid reveal">
+        <div class="piece">
+          <div class="piece-num">01</div>
+          <div class="piece-name">Heavyweight Signature Tee</div>
+          <div class="piece-price">From $145</div>
+        </div>
+        <div class="piece">
+          <div class="piece-num">02</div>
+          <div class="piece-name">Varsity Coach&rsquo;s Jacket</div>
+          <div class="piece-price">From $595</div>
+        </div>
+        <div class="piece">
+          <div class="piece-num">03</div>
+          <div class="piece-name">Performance Fleece Hoodie</div>
+          <div class="piece-price">From $285</div>
+        </div>
+        <div class="piece">
+          <div class="piece-num">04</div>
+          <div class="piece-name">Tapered Training Jogger</div>
+          <div class="piece-price">From $265</div>
+        </div>
+        <div class="piece">
+          <div class="piece-num">05</div>
+          <div class="piece-name">Moto-Athletic Bomber</div>
+          <div class="piece-price">From $495</div>
+        </div>
+        <div class="piece">
+          <div class="piece-num">06</div>
+          <div class="piece-name">Competition-Cut Shorts</div>
+          <div class="piece-price">From $165</div>
+        </div>
+        <div class="piece">
+          <div class="piece-num">07</div>
+          <div class="piece-name">Fitted Quarter-Zip</div>
+          <div class="piece-price">From $320</div>
+        </div>
+        <div class="piece">
+          <div class="piece-num">08</div>
+          <div class="piece-name">Monarch Cap</div>
+          <div class="piece-price">From $85</div>
+        </div>
+      </div>
+      <div class="collection-footer reveal">
+        <a href="#waitlist" class="btn-secondary">Join the Founding List</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <div class="container">
+      <div class="waitlist-inner reveal">
+        <span class="eyebrow">Founding List</span>
+        <h2>Be first. Not everyone will be.</h2>
+        <p class="waitlist-sub">Founding list members get first access to the drop &mdash; 48 hours before it opens to anyone else. No discount. Just first.</p>
+        <form class="waitlist-form" id="waitlist-form" novalidate>
+          <input type="email" name="email" placeholder="Email address" required autocomplete="email" aria-label="Email address">
+          <button type="submit">Join</button>
+        </form>
+        <p class="waitlist-note">No spam. One email when the drop opens.</p>
+        <div class="waitlist-confirm" role="status" aria-live="polite">
+          <h3>You&rsquo;re on the list.</h3>
+          <p>We&rsquo;ll be in touch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="#top" class="brand" aria-label="Monarch Motion home">
+        <span class="crown" aria-hidden="true">&#9819;</span>
+        <span class="wordmark">Monarch Motion</span>
+      </a>
+      <div class="footer-links">
+        <a href="#" aria-label="Monarch Motion on Instagram">Instagram</a>
+        <a href="#" aria-label="Monarch Motion on TikTok">TikTok</a>
+        <a href="mailto:hello@monarchmotionathletic.com">Contact</a>
+      </div>
+      <div class="copyright">&copy; 2026 Monarch Motion. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom gold cursor (desktop only)
+    (function () {
+      var supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (!supportsHover) return;
+      var cursor = document.getElementById('cursor');
+      var x = 0, y = 0, tx = 0, ty = 0;
+      document.addEventListener('mousemove', function (e) {
+        tx = e.clientX; ty = e.clientY;
+      });
+      function render() {
+        x += (tx - x) * 0.22;
+        y += (ty - y) * 0.22;
+        cursor.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%)';
+        requestAnimationFrame(render);
+      }
+      render();
+      document.querySelectorAll('a, button, input').forEach(function (el) {
+        el.addEventListener('mouseenter', function () { cursor.classList.add('hover'); });
+        el.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); });
+      });
+    })();
+
+    // Nav: transparent -> solid on scroll
+    (function () {
+      var nav = document.getElementById('nav');
+      function onScroll() {
+        if (window.scrollY > 40) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Scroll-triggered reveals
+    (function () {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(function (el) {
+        io.observe(el);
+      });
+      // Hero fires immediately on load regardless (it's above the fold)
+      window.addEventListener('load', function () {
+        var hero = document.getElementById('hero-stagger');
+        if (hero) hero.classList.add('in');
+      });
+    })();
+
+    // Waitlist form
+    (function () {
+      var form = document.getElementById('waitlist-form');
+      var section = document.getElementById('waitlist');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.email.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          form.email.focus();
+          return;
+        }
+
+        // === GO-LIVE HOOK =====================================================
+        // Replace console.log with a fetch() POST to the Klaviyo list endpoint.
+        // Example (Klaviyo form embed):
+        //   fetch('https://manage.kmail-lists.com/ajax/subscriptions/subscribe', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        //     body: 'g=YOUR_LIST_ID&email=' + encodeURIComponent(email)
+        //   });
+        // ======================================================================
+        console.log('waitlist signup:', email);
+
+        section.classList.add('submitted');
+      });
+    })();
+  </script>
+</body>
+</html>
